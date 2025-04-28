@@ -1,4 +1,4 @@
-package com.veggietrade.veggietradeapp;
+package com.veggietrade;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

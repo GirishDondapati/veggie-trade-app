@@ -1,8 +1,8 @@
 package com.veggietrade.model;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 @Entity
 public class Product {
@@ -14,7 +14,18 @@ public class Product {
     private String name;
     private String description;
     private double price;
-    private int quantityInStock;
+
+    // Default constructor (important!)
+    public Product() {
+    }
+
+    // All-args constructor (optional, good for faster creation)
+    public Product(Long id, String name, String description, double price) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+    }
 
     // Getters and setters
     public Long getId() {
@@ -47,13 +58,5 @@ public class Product {
 
     public void setPrice(double price) {
         this.price = price;
-    }
-
-    public int getQuantityInStock() {
-        return quantityInStock;
-    }
-
-    public void setQuantityInStock(int quantityInStock) {
-        this.quantityInStock = quantityInStock;
     }
 }
