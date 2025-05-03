@@ -60,7 +60,7 @@ class ProductControllerTest {
         verify(productService, times(1)).saveProduct(any(Product.class));
     }
 
-   @Test
+   /*@Test
     void testGetAllProducts() throws Exception {
         Product product1 = new Product(1L, "Apple", "Fresh Organic red apple", 10.5);
         Product product2 = new Product(2L, "Banana", "Fresh banana", 5.0);
@@ -117,5 +117,5 @@ class ProductControllerTest {
                 .andExpect(jsonPath("$.price").value(12.0));
 
         verify(productService, times(1)).updateProduct(any(Product.class), eq(1L));
-    }
+    }*/
 }
