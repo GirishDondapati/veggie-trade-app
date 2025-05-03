@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.veggietrade.model.Product;
 import com.veggietrade.repository.ProductRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ProductService {
@@ -36,25 +37,15 @@ public class ProductService {
     }
 
     // Update Product
-    public Product updateProduct(Product product, Long id) {
+    @Transactional
+    public Product updateProduct(Product newProductData, Long id) {
 
- 
-        Product productFromDB  = productRepository.findById(id).get();
-         productFromDB.setName(product.getName());
-         productFromDB.setDescription(product.getDescription());
-         productFromDB.setPrice(product.getPrice());
-         
-       /* if (Objects.nonNull(product.getName()) && !"".equalsIgnoreCase(product.getName())) {
-            productFromDB.setName(product.getName());
-        }
-        if (Objects.nonNull(product.getDescription()) && !"".equalsIgnoreCase(product.getDescription())) {
-            productFromDB.setDescription(product.getDescription());
-        }
-        if (Objects.nonNull(product.getPrice()) && !"".equalsIgnoreCase(product.getPrice())) {
-            productFromDB.setPrice(product.getPrice());
-        }*/
- 
-        return productRepository.save(productFromDB);
+        return productRepository.findById(id).map(product -> {
+            product.setName(newProductData.getName());
+            product.setDescription(newProductData.getDescription());
+            product.setPrice(newProductData.getPrice());
+            return productRepository.save(product);
+        }).orElseThrow(() -> new RuntimeException("Product not found"));        
     }
 
    public String getAllProducts1() {

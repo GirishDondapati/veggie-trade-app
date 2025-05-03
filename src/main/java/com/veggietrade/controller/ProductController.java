@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+
 
 import com.veggietrade.model.Product;
 import com.veggietrade.service.ProductService;
@@ -47,8 +49,9 @@ public class ProductController {
     }
 
     @PutMapping("/{id}") 
-    public Product updateProduct(@RequestBody Product product, @PathVariable("id") Long id)
+    public ResponseEntity<Product> updateProduct(@RequestBody Product product, @PathVariable("id") Long id)
     {
-        return productService.updateProduct(product, id);
+        Product updatedProduct = productService.updateProduct(product, id);
+        return ResponseEntity.ok(updatedProduct);
     }
 }

@@ -1,4 +1,4 @@
-package com.veggietrade.veggietradeapp;
+package com.veggietrade;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
