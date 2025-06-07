@@ -35,6 +35,9 @@ public class User {
 
     private int loginAttempts = 0;
 
+    @Column
+    private String role;
+
     @Column(length = 1)
     private String accountStatus = "A"; // A=Active, D-Deactive, C- Closed, L-Locked
 
@@ -44,7 +47,7 @@ public class User {
     public User() {
     }
 
-    public User(String emailId, Timestamp lastLogin, Timestamp lastModifiedDate, String mobileNo, String pwd, Long userId, String userName) {
+    public User(String role, String emailId, Timestamp lastLogin, Timestamp lastModifiedDate, String mobileNo, String pwd, Long userId, String userName) {
         this.emailId = emailId;
         this.lastLogin = lastLogin;
         this.lastModifiedDate = lastModifiedDate;
@@ -52,6 +55,7 @@ public class User {
         this.pwd = pwd;
         this.userId = userId;
         this.userName = userName;
+        this.role = role;
     }
 
     // Getters and setters
@@ -134,6 +138,14 @@ public class User {
 
     public void setAccCreatedDate(Timestamp accCreatedDate) {
         this.accCreatedDate = accCreatedDate;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
 }
